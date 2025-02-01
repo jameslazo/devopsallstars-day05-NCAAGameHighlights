@@ -235,12 +235,18 @@ terraform plan
 ```bash
 terraform apply -var-file="terraform.dev.tfvars"
 ```
-6. Log into ECR
+
+6. Create an ECR Repo
+```bash
+aws ecr create-repository --repository-name highlight-pipeline
+```
+
+7. Log into ECR
 ```bash
 aws ecr get-login-password --region us-east-1 | \
   docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
 ```
-7. Build and Push the Docker Image
+8. Build and Push the Docker Image
 ```bash
 docker build -t highlight-pipeline:latest .
 docker tag highlight-pipeline:latest <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/highlight-pipeline:latest
