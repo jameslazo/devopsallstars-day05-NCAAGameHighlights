@@ -206,7 +206,7 @@ aws ssm put-parameter \
 ```
 6.  Run the following script to obtain your mediaconvert_endpoint:
 ```bash
-aws mediaconvert describe-endpoints
+aws mediaconvert describe-endpoints --query "Endpoints[0].Url" --output text
 ```
 7. Leave the mediaconvert_role_arn string empty
 
@@ -235,16 +235,18 @@ terraform plan
 ```bash
 terraform apply -var-file="terraform.dev.tfvars"
 ```
-6.Build the docker image for AWS deployment - ensure you are at the src folder 
+6. Log into ECR
+```bash
+aws ecr get-login-password --region us-east-1 | \
+  docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
+```
+7. Build and Push the Docker Image
 ```bash
 docker build -t highlight-pipeline:latest .
 docker tag highlight-pipeline:latest <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/highlight-pipeline:latest
 ```
-7.Log into ECR & Push
-```bash
-aws ecr get-login-password --region us-east-1 | \
-  docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
 
+```bash
 docker push <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/highlight-pipeline:latest
 ```
 
