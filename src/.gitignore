@@ -1,35 +1,22 @@
-# Ignore the .env file specifically in the src directory
-/src/.env
+#\\\\\\\\\\\\#
+#\GIT\IGNORE\#
+#\\\\\\\\\\\\#
 
-# Alternatively, ignore any .env files within src if multiple exist
-# /src/*.env
+# Whitelisting, allow traversing all directories besides .terraform and .venv
+*
+!*/
+.terrform/
+.venv/
 
-# General rule to ignore any .env files anywhere in the project
-.env
-.env.*  # For example, .env.local, .env.development, etc.
+# Whitelist .gitignore file
+!.gitignore
 
-# Ignore terrform variable files 
-*.tfvars
-*.tfvars.json
+# Whitelist terraform files, excluding backend.tf
+!*.tf
+backend.tf
 
-# ----------------------------
-# Optional: Ignore Other Files
-# ----------------------------
-
-# macOS system files
-.DS_Store
-
-# Windows system files
-Thumbs.db
-
-# VS Code settings folder
-.vscode/
-
-# Log files
-*.log
-
-# Node.js dependencies (if applicable)
-node_modules/
-
-# Python virtual environments (if applicable)
-venv/
+# Whitelist app files
+!Dockerfile
+!Makefile
+!requirements.txt
+!*.py
