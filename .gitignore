@@ -1,0 +1,25 @@
+#\\\\\\\\\\\\#
+#\GIT\IGNORE\#
+#\\\\\\\\\\\\#
+
+# Whitelisting, allow traversing all directories besides .terraform and .venv
+*
+!*/
+.terrform/
+.venv/
+
+# Whitelist .gitignore file
+!.gitignore
+
+# Whitelist .md files
+!*.md
+
+# Whitelist terraform files, excluding backend.tf
+!*.tf
+backend.tf
+
+# Whitelist app files
+!Dockerfile
+!Makefile
+!requirements.txt
+!*.py
