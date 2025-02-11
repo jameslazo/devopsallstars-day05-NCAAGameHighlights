@@ -1,13 +1,9 @@
 # Flourishes
 
-## Lambda-fy
-- [ ] Decontainerize app
-- [ ] Refactor python code to Lambda function
-- [ ] Decouple Lambda function jobs to parallelize media conversion
-
-## Terraform Clean-up
-- [ ] Update file structure
-- [ ] Decommission ECR/ECS
+## Migrate TF
+- [x] Move to TF repo
+- [ ] Integrate into current deployments
+- [ ] Assimilate `vpc_setup.sh` into TF
 
 ## GitHub Actions
 - [ ] GHA CI/CD pipeline
