@@ -9,7 +9,7 @@ import boto3
 # Import specific configuration variables from the 'config.py' module
 from config import (
     AWS_REGION,               # AWS region where services are deployed (e.g., 'us-east-1')
-    MEDIACONVERT_ENDPOINT,    # The endpoint URL for AWS MediaConvert service
+    # MEDIACONVERT_ENDPOINT,    # Per-account endpoints deprecated; use region-specific endpoint
     MEDIACONVERT_ROLE_ARN,    # The Amazon Resource Name (ARN) for the IAM role used by MediaConvert
     S3_BUCKET_NAME            # The name of the Amazon S3 bucket used for input/output data
 )
@@ -22,11 +22,11 @@ def create_job():
     and submits a job to AWS MediaConvert for processing a video file stored in S3.
     """
     try:
+        region_name=AWS_REGION            # AWS region from configuration
         # Initialize the MediaConvert client with specified region and endpoint
         mediaconvert = boto3.client(
             "mediaconvert",                    # AWS MediaConvert service
-            region_name=AWS_REGION,            # AWS region from configuration
-            endpoint_url=MEDIACONVERT_ENDPOINT  # MediaConvert endpoint URL from configuration
+            endpoint_url=f"https://mediaconvert.{region_name}.amazonaws.com"  # https://docs.aws.amazon.com/general/latest/gr/mediaconvert.html
         )
 
         # Define the S3 URL for the input video file to be processed
