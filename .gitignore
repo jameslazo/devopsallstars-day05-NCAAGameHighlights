@@ -23,3 +23,6 @@ backend.tf
 !Makefile
 !requirements.txt
 !*.py
+
+# Whitelist workflow
+!main.yml
