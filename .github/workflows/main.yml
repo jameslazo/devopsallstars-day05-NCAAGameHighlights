@@ -23,6 +23,6 @@ jobs:
           ECR_NAME: ${{ secrets.ECR_NAME }}
           ECR_REPO_URI: ${{ secrets.ECR_REPO_URI }}
         run: |
-          docker build -t $ECR_NAME:latest .
+          docker build -t $ECR_NAME:latest src/
           docker tag $ECR_NAME:latest $ECR_REPO_URI:latest
           docker push $ECR_REPO_URI:latest
