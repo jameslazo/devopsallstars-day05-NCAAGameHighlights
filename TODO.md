@@ -6,4 +6,4 @@
 - [x] Assimilate `vpc_setup.sh` into TF
 
 ## GitHub Actions
-- [ ] GHA CI/CD pipeline
+- [x] GHA CI/CD pipeline
